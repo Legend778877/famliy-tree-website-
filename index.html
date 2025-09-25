@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Family Tree Finder</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; background: #f2f2f2; }
+    h2 { color: #333; }
+    input { padding: 10px; width: 250px; margin-right: 10px; }
+    button { padding: 10px 15px; cursor: pointer; }
+    #result { margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h2>👨‍👩‍👦 Family Tree Finder</h2>
+
+  <input id="cnic" placeholder="CNIC number likho (ex: 331001234567)">
+  <button onclick="search()">Search</button>
+
+  <div id="result">🔍 Result yahan show hovega...</div>
+
+  <script>
+    async function search() {
+      let cnic = document.getElementById("cnic").value;
+      if (!cnic) {
+        alert("Pehla CNIC number likh");
+        return;
+      }
+      document.getElementById("result").innerText = "⏳ Loading...";
+      try {
+        let res = await fetch("https://shadowpaksim.xyz/familytreeshadowprivate.php?cnic=" + cnic);
+        let data = await res.text();
+        document.getElementById("result").innerText = data;
+      } catch (e) {
+        document.getElementById("result").innerText = "⚠️ API kam ni kar rahi";
+      }
+    }
+  </script>
+</body>
+    </html>
